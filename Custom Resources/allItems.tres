@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b752wi5mr3l3y"]
+
+[ext_resource type="Script" path="res://Scripts/Resource Definition/ItemResource.gd" id="1_onswl"]
+[ext_resource type="Script" path="res://Scripts/Resource Definition/ItemDatabase.gd" id="2_82utt"]
+[ext_resource type="Resource" uid="uid://cjp1n408wb645" path="res://Custom Resources/Product.tres" id="2_xn2ty"]
+
+[resource]
+script = ExtResource("2_82utt")
+ItemDB = Array[ExtResource("1_onswl")]([ExtResource("2_xn2ty")])

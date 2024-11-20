@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="invItem" load_steps=3 format=3 uid="uid://cjp1n408wb645"]
+
+[ext_resource type="Texture2D" uid="uid://b2r18fcppqwal" path="res://Art/Items/060-box.png" id="1_p7i2r"]
+[ext_resource type="Script" path="res://Scripts/Resource Definition/ItemResource.gd" id="1_r8xk6"]
+
+[resource]
+script = ExtResource("1_r8xk6")
+itemName = "Product"
+desc = "A generic product that can be bought or sold"
+icon = ExtResource("1_p7i2r")
+maxStack = 100
+normalSellPrice = 100.0

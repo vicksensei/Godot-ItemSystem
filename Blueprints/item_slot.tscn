@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc0undbvi65ta"]
+
+[ext_resource type="Script" path="res://Scripts/itemSlotUI.gd" id="1_jqcvb"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/item_flash.gdshader" id="2_7soeu"]
+[ext_resource type="Texture2D" uid="uid://b2r18fcppqwal" path="res://Art/Items/060-box.png" id="2_hcpgb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36brw"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ol82"]
+shader = ExtResource("2_7soeu")
+shader_parameter/shine_color = Color(1, 1, 1, 0.784314)
+shader_parameter/shine_speed = 4.5
+shader_parameter/shine_size = 0.01
+shader_parameter/isPlaying = true
+
+[node name="ItemSlot" type="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+script = ExtResource("1_jqcvb")
+bgColor = Color(0.301961, 0.301961, 0.301961, 1)
+highlightColor = Color(0.55, 0.1837, 0.143, 1)
+
+[node name="SlotBG" type="Panel" parent="."]
+self_modulate = Color(0.301961, 0.301961, 0.301961, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36brw")
+
+[node name="MarginContainer" type="MarginContainer" parent="SlotBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ItemImage" type="TextureRect" parent="SlotBG/MarginContainer"]
+material = SubResource("ShaderMaterial_0ol82")
+layout_mode = 2
+texture = ExtResource("2_hcpgb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SlotBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
