@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc0undbvi65ta"]
 
-[ext_resource type="Script" path="res://Scripts/itemSlotUI.gd" id="1_jqcvb"]
+[ext_resource type="Script" path="res://Scripts/UI/itemSlotUI.gd" id="1_jqcvb"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/item_flash.gdshader" id="2_7soeu"]
 [ext_resource type="Texture2D" uid="uid://b2r18fcppqwal" path="res://Art/Items/060-box.png" id="2_hcpgb"]
 

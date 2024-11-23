@@ -1,13 +1,16 @@
 extends Control
 class_name ItemSlotUI
+const IDB = preload("res://Custom Resources/allItems.tres")
 @export var bgColor: Color
 @export var highlightColor: Color
+
 
 @onready var item_image = $SlotBG/MarginContainer/ItemImage
 @onready var label = $SlotBG/Label
 @onready var margin_container = $SlotBG/MarginContainer
 @onready var slot_bg = $SlotBG
 
+var slotData:ItemSlot
 var heldItem:invItem = null
 var quantity:int = 0
 var slotID: int = 0
@@ -15,12 +18,20 @@ var slotID: int = 0
 func _ready():
 	deHighlight() 
 	item_image.material = item_image.material.duplicate()
-	updateSlot()
+	#updateSlot()
 	
 	pass # Replace with function body.
 
+func setSlot(slot:ItemSlot):
+	slotData = slot
+	updateSlot()
 
 func updateSlot():
+	quantity = slotData.quantity
+	heldItem = IDB.getItem(slotData.heldItemID)
+	if not heldItem == null:
+		item_image.texture = heldItem.icon
+	label.text = str(quantity)
 	if heldItem == null:
 		clearDisplay()
 	if quantity == 0:
@@ -29,13 +40,7 @@ func updateSlot():
 	if quantity ==1:
 		label.text = ""
 	if quantity>1 and not heldItem == null:
-		label.text = quantity
-
-func setItem(item:invItem, amount:int):
-	heldItem = item
-	quantity = amount
-	updateSlot()
-
+		label.text = str(quantity)
 
 func clearDisplay():
 	label.text = ""

@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://bpvqqv3c3al8m"]
+[gd_scene load_steps=8 format=3 uid="uid://bpvqqv3c3al8m"]
+
+[ext_resource type="Texture2D" uid="uid://b7lfija0e8s1c" path="res://Art/Items/028-treasure.png" id="1_7f31k"]
+[ext_resource type="Script" path="res://Scripts/Testing/chest.gd" id="2_e5f6l"]
+[ext_resource type="Texture2D" uid="uid://dsugpxq1n0ibd" path="res://Art/Items/016-fabric.png" id="3_6wsx1"]
+[ext_resource type="Script" path="res://Scripts/Testing/ItemAdder.gd" id="4_lsfn7"]
+[ext_resource type="Resource" uid="uid://ripaim5cuk3s" path="res://Custom Resources/cloth.tres" id="5_2hlvc"]
+[ext_resource type="Resource" uid="uid://cjp1n408wb645" path="res://Custom Resources/Product.tres" id="6_2fhy4"]
+[ext_resource type="Resource" uid="uid://cngbh0qroja17" path="res://Custom Resources/herbs.tres" id="7_d0e6y"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Chest" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 215.0
+offset_bottom = 151.0
+text = "Chest 1"
+icon = ExtResource("1_7f31k")
+script = ExtResource("2_e5f6l")
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("chest")]
+offset_left = 815.0
+offset_top = 90.0
+offset_right = 951.0
+offset_bottom = 226.0
+text = "Add 1 cloth"
+icon = ExtResource("3_6wsx1")
+script = ExtResource("4_lsfn7")
+item = ExtResource("5_2hlvc")
+quantity = 10
+chest = NodePath("../Chest")
+
+[node name="Button2" type="Button" parent="." node_paths=PackedStringArray("chest")]
+offset_left = 816.0
+offset_top = 260.0
+offset_right = 1043.0
+offset_bottom = 396.0
+text = "Add 1 cloth"
+icon = ExtResource("3_6wsx1")
+script = ExtResource("4_lsfn7")
+item = ExtResource("6_2fhy4")
+quantity = 10
+chest = NodePath("../Chest")
+
+[node name="Button3" type="Button" parent="." node_paths=PackedStringArray("chest")]
+offset_left = 818.0
+offset_top = 434.0
+offset_right = 1045.0
+offset_bottom = 570.0
+text = "Add 1 cloth"
+icon = ExtResource("3_6wsx1")
+script = ExtResource("4_lsfn7")
+item = ExtResource("7_d0e6y")
+quantity = 10
+chest = NodePath("../Chest")
+
+[connection signal="pressed" from="Chest" to="Chest" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]

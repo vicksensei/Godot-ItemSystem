@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="invItem" load_steps=3 format=3 uid="uid://cngbh0qroja17"]
+
+[ext_resource type="Texture2D" uid="uid://cv03iv4701gsd" path="res://Art/Items/145-eco-friendly-fabric.png" id="1_c3mg3"]
+[ext_resource type="Script" path="res://Scripts/Resource Definition/ItemResource.gd" id="1_j8qbn"]
+
+[resource]
+script = ExtResource("1_j8qbn")
+itemName = "Herbs"
+desc = "Medicinal herbs "
+icon = ExtResource("1_c3mg3")
+maxStack = 50
+normalSellPrice = 50.0
+itemID = 2

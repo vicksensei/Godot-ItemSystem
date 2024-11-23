@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="invItem" load_steps=3 format=3 uid="uid://ripaim5cuk3s"]
+
+[ext_resource type="Texture2D" uid="uid://dsugpxq1n0ibd" path="res://Art/Items/016-fabric.png" id="1_55ci5"]
+[ext_resource type="Script" path="res://Scripts/Resource Definition/ItemResource.gd" id="1_cfink"]
+
+[resource]
+script = ExtResource("1_cfink")
+itemName = "Cloth"
+desc = "Some cloth fabric"
+icon = ExtResource("1_55ci5")
+maxStack = 25
+normalSellPrice = 10.0
+itemID = 1

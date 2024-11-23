@@ -1,22 +1,29 @@
 extends Object
-
+class_name InventoryData
 var slots: Array[ItemSlot]
-var IDB = preload("res://Custom Resources/allItems.tres")
+const IDB = preload("res://Custom Resources/allItems.tres")
+
+func _init(numSlots:int):
+	slots= []
+	for i in range(numSlots):
+		slots.append(ItemSlot.new(i))
 
 func checkSpaceForItem(item:invItem):
 	var max = item.maxStack
 	var total_space = 0
-	total_space = checkEmpySlots().size() * max
+	var empty_slots = checkEmpySlots()
+	total_space = empty_slots.size() * max
 	for s in slots:
 		if s.heldItemID == item.itemID:
 			var remaining = max - s.quantity
 			total_space += remaining
+	return total_space
 
-func checkEmpySlots():
-	var availableSlots = []
+func checkEmpySlots()-> Array[ItemSlot]:
+	var availableSlots:Array[ItemSlot] = []
 	for s in slots:
-		if s.heldItemID == 0:
-			availableSlots.append(0)
+		if s.heldItemID == -1:
+			availableSlots.append(s)
 	return availableSlots
 
 func countItem(item:invItem):
@@ -36,7 +43,7 @@ func addItem(item:invItem, amount:int):
 	for s in slots:
 		if s.heldItemID == -1: #if an empty slot
 			continue		   #skip it for now
-		var i:invItem = getItem( s.heldItemID)
+		var i = IDB.getItem( s.heldItemID)
 		if i.itemID == item.itemID: #if it is a stack of the item
 			if amountRemaining +s.quantity <= i.maxStack: 
 				#if you have more space than you need 
@@ -74,7 +81,7 @@ func removeItem(item:invItem, amount:int) -> bool:
 	#since we do have enough, remove the as much of the item from every slot
 	var amountRemaining = amount
 	for s in slots:
-		var i = getItem(s.heldItemID)
+		var i = IDB.getItem(s.heldItemID)
 		if amountRemaining > 0:
 			if i.itemID == item.itemID:
 				#when you find a stack of the item in a slot
@@ -88,7 +95,6 @@ func removeItem(item:invItem, amount:int) -> bool:
 		else:
 			return true
 	#
-	print("Something went wrong")
 	return false	
 func removeItemFromSlot(slot:ItemSlot, amount:int) ->bool:
 	if slot.quantity >= amount:
@@ -111,8 +117,8 @@ func switchItems(slotA:int,slotB:int):
 		slots[slotB].heldItemID = tempID
 		slots[slotB].quantity = tempAmount
 		
-func getItem(itemID) -> invItem:
-	if itemID < IDB.ItemDB.size():
-		return IDB.ItemDB[itemID]
-	return null
-	
+
+
+func getItemFromSlot(slotID:int):
+	var itemId= slots[slotID].heldItemID
+	return IDB.getItem(itemId)

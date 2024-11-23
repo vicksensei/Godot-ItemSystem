@@ -5,7 +5,7 @@ var slotID:int
 var quantity:int
 var heldItemID:int
 
-func create(id:int):
+func _init(id:int):
 	slotID = id
 	quantity = 0
 	heldItemID = -1
